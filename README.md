@@ -153,7 +153,6 @@ The class that creates the blueprint for the side view ball
 - int intXPosition
 - int intYPosition
 
-
 ***Accessors***
 - getVelocityX
   - Return Type: double
@@ -169,6 +168,7 @@ The class that creates the blueprint for the side view ball
   - Return Type: int
 - getPositionY
   - Return Type: int
+
 ***Mutators***
 - setVelocityX
   - Return Type: void
@@ -187,6 +187,7 @@ The class that creates the blueprint for the side view ball
       - Type: int
     - y
       - Type: int
+
 ***Utility***
 - getMomentum
   - Return type: int
