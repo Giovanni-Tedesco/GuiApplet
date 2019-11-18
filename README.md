@@ -1,1 +1,1 @@
-# GuiApplet
+# Physics GUI Applet
