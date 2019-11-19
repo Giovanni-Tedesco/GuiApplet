@@ -11,12 +11,14 @@ public class Ball1d {
   private int bounds;
 
 
+  //Generally Blue Ball
   Ball1d(double velocity, double mass, int width){
     this.velocity = velocity;
     this.mass = mass;
     this.bounds = width;
   }
 
+  //Generally Red ball
   Ball1d(double velocity, double mass, double xPos, int width){
     this.velocity = velocity;
     this.mass = mass;
@@ -69,6 +71,9 @@ public class Ball1d {
 
   public void setVelocity(double velocity){
     this.velocity = velocity;
+  }
+  public void setMass(double mass){
+    this.mass = mass;
   }
 
 }

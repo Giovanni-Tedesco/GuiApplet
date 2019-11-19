@@ -5,8 +5,8 @@ public class TwoObjectElastic extends JPanel {
 
   int width = 800;
   int height = 800;
-  Ball1d ball = new Ball1d(5, 1000, width);
-  Ball1d ball2 = new Ball1d(-3, 100, width - 100, width);
+  Ball1d ball = new Ball1d(5.5, 100, width);
+  Ball1d ball2 = new Ball1d(-5, 100, width - 100, width);
   Dimension dimensions = new Dimension(width, height);
 
   public void paintComponent(Graphics g){
@@ -21,7 +21,7 @@ public class TwoObjectElastic extends JPanel {
     ball.collides(ball2);
   }
 
-  AnimateSingleObj() {
+  TwoObjectElastic() {
     super();
   }
 
