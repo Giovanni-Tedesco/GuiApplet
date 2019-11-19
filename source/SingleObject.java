@@ -15,16 +15,20 @@ public class SingleObject implements ActionListener, ChangeListener {
   JLabel velocity2Label = new JLabel("Velocity 2");
   JSlider mass1Slider = new JSlider();
   JSlider mass2Slider = new JSlider();
-  JSlider velocity1Slider = new JSlider();
-  JSlider velocity2Slider = new JSlider();
+  JSlider velocity1Slider = new JSlider(-10, 10, 0);
+  JSlider velocity2Slider = new JSlider(-10, 10, 0);
 
   public void actionPerformed(ActionEvent evt){
     if(evt.getSource() == timer){
       thepanel.repaint();
     }
+    if(evt.getSource() == startButton){
+       thepanel.running = true;
+    }
   }
 
   public void stateChanged(ChangeEvent evt){
+    timer.stop();
     if(evt.getSource() == mass1Slider){
       thepanel.ball.setMass((double)mass1Slider.getValue());
     }
@@ -35,8 +39,9 @@ public class SingleObject implements ActionListener, ChangeListener {
       thepanel.ball.setVelocity((double)velocity1Slider.getValue());
     }
     if(evt.getSource() == velocity2Slider){
-      thepanel.ball.setVelocity((double)velocity2Slider.getValue());
+      thepanel.ball2.setVelocity((double)velocity2Slider.getValue());
     }
+    timer.start();
   }
 
   SingleObject(){
@@ -44,11 +49,17 @@ public class SingleObject implements ActionListener, ChangeListener {
     thepanel.setLayout(null);
 
     startButton.setSize(new Dimension(100, 50));
+    startButton.addActionListener(this);
+    thepanel.add(startButton);
 
     //Mass 1
     mass1Slider.setSize(new Dimension(300, 50));
     mass1Slider.setLocation(0, 200);
     mass1Slider.addChangeListener(this);
+    mass1Slider.setMajorTickSpacing(10);
+    mass1Slider.setMinorTickSpacing(1);
+    mass1Slider.setPaintTicks(true);
+    mass1Slider.setPaintLabels(true);
     thepanel.add(mass1Slider);
 
     mass1Label.setSize(new Dimension(50, 25));
@@ -59,6 +70,10 @@ public class SingleObject implements ActionListener, ChangeListener {
     mass2Slider.setSize(new Dimension(300, 50));
     mass2Slider.setLocation(0, 275);
     mass2Slider.addChangeListener(this);
+    mass2Slider.setMajorTickSpacing(10);
+    mass2Slider.setMinorTickSpacing(1);
+    mass2Slider.setPaintTicks(true);
+    mass2Slider.setPaintLabels(true);
     thepanel.add(mass2Slider);
 
     mass2Label.setSize(new Dimension(50, 25));
@@ -69,6 +84,10 @@ public class SingleObject implements ActionListener, ChangeListener {
     velocity1Slider.setSize(new Dimension(300, 50));
     velocity1Slider.setLocation(300, 200);
     velocity1Slider.addChangeListener(this);
+    velocity1Slider.setMajorTickSpacing(5);
+    velocity1Slider.setMinorTickSpacing(1);
+    velocity1Slider.setPaintTicks(true);
+    velocity1Slider.setPaintLabels(true);
     thepanel.add(velocity1Slider);
 
     velocity1Label.setSize(new Dimension(100, 25));
@@ -79,6 +98,10 @@ public class SingleObject implements ActionListener, ChangeListener {
     velocity2Slider.setSize(new Dimension(300, 50));
     velocity2Slider.setLocation(300, 275);
     velocity2Slider.addChangeListener(this);
+    velocity2Slider.setMajorTickSpacing(5);
+    velocity2Slider.setMinorTickSpacing(1);
+    velocity2Slider.setPaintTicks(true);
+    velocity2Slider.setPaintLabels(true);
     thepanel.add(velocity2Slider);
 
     velocity2Label.setSize(new Dimension(100, 25));
@@ -90,6 +113,7 @@ public class SingleObject implements ActionListener, ChangeListener {
     frame.setContentPane(thepanel);
     frame.pack();
     frame.setVisible(true);
+    timer.start();
   }
 
   public static void main(String[] args){
