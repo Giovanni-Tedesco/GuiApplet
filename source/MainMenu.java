@@ -15,6 +15,7 @@ public class MainMenu implements ActionListener{
   public void actionPerformed(ActionEvent evt){
     if(evt.getSource() == aboutButton){
       System.out.println("Pressed About Button");
+      theframe.setConentPane(AnimateSingleObj)
     }
     if(evt.getSource() == multiObjButton){
       System.out.println("Pressed Multi Button");

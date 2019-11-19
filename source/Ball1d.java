@@ -41,13 +41,13 @@ public class Ball1d {
     if(this.xPos + 100 < other.xPos || this.xPos > other.xPos + 100){
       System.out.println("Does not collide");
     } else {
-      this.velocity = this.velocity * ((this.mass - other.getMass()) /
-                                    (this.mass + other.getMass()));
+          this.velocity = this.velocity * ((this.mass - other.getMass()) /
+                                        (this.mass + other.getMass()));
 
-      other.setVelocity(this.velocity * ((2 * this.mass) /
+          other.setVelocity(this.velocity * ((2 * this.mass) /
                         (this.mass + other.getMass())));
-      }
     }
+  }
     //Accessors and Mutators
     public double getXPos() {
 
