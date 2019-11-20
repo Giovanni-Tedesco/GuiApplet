@@ -38,33 +38,27 @@ public class Ball1d {
     }
   }
 
-  public void collides(Ball1d other){
+  public boolean collides(Ball1d other){
 
-    if(this.xPos + 100 < other.xPos || this.xPos > other.xPos + 100){
-      System.out.println("Does not collide");
-    } else {
-      if(other.getVelocity() == 0){
-        this.velocity = this.velocity * ((this.mass - other.getMass()) / (this.mass + other.getMass()));
-        System.out.println(this.velocity);
-
-        other.setVelocity(this.velocity * ( (2 * this.mass) / (this.mass + other.getMass()) ) );
-        System.out.println(other.getVelocity());
-      } else if(other.getVelocity() != 0){
-        //Elastic Momentum if v2 is greater than 0
-        double tempV2 = other.getVelocity() + -other.getVelocity();
-        double tempV1 = this.velocity + tempV2;
-
-        this.velocity = tempV1 * ((this.mass - other.getMass()) / (this.mass + other.getMass())) - tempV2;
-        other.setVelocity(tempV1 * ( (2 * this.mass) / (this.mass + other.getMass())) - tempV2) ;
-      }
-    }
+    return !(this.xPos + 100 < other.xPos || this.xPos > other.xPos + 100);
   }
-    //Accessors and Mutators
-    public double getXPos() {
 
-      return this.xPos;
+  public double bounce(Ball1d other){
+    double sumMass = this.mass + other.getMass();
+    double newV = (this.mass - other.getMass()) / sumMass * this.velocity;
+    newV += (2 * other.getMass() / sumMass) * other.getVelocity();
 
-    }
+    return newV;
+
+
+  }
+
+  //Accessors and Mutators
+  public double getXPos() {
+
+    return this.xPos;
+
+  }
 
   public double getVelocity() {
     return this.velocity;

@@ -18,7 +18,15 @@ public class TwoObjectElastic extends JPanel {
       ball.update(g);
       g.setColor(Color.RED);
       ball2.update(g);
-      ball2.collides(ball);
+      if(ball.collides(ball2)){
+        double v1 = ball.bounce(ball2);
+        double v2 = ball2.bounce(ball);
+
+        ball.setVelocity(v1);
+        ball2.setVelocity(v2);
+
+
+      }
     } else {
       g.setColor(Color.BLUE);
       g.fillOval((int)ball.xPos, 50, 100, 100);
