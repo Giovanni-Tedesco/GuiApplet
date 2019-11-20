@@ -43,11 +43,20 @@ public class Ball1d {
     if(this.xPos + 100 < other.xPos || this.xPos > other.xPos + 100){
       System.out.println("Does not collide");
     } else {
-          this.velocity = this.velocity * ((this.mass - other.getMass()) / (this.mass + other.getMass()));
-          System.out.println(this.velocity);
+      if(other.getVelocity() == 0){
+        this.velocity = this.velocity * ((this.mass - other.getMass()) / (this.mass + other.getMass()));
+        System.out.println(this.velocity);
 
-          other.setVelocity(this.velocity * ( (2 * this.mass) / (this.mass + other.getMass()) ) );
-          System.out.println(other.getVelocity());
+        other.setVelocity(this.velocity * ( (2 * this.mass) / (this.mass + other.getMass()) ) );
+        System.out.println(other.getVelocity());
+      } else if(other.getVelocity() != 0){
+        //Elastic Momentum if v2 is greater than 0
+        double tempV2 = other.getVelocity() + -other.getVelocity();
+        double tempV1 = this.velocity + tempV2;
+
+        this.velocity = tempV1 * ((this.mass - other.getMass()) / (this.mass + other.getMass())) - tempV2;
+        other.setVelocity(tempV1 * ( (2 * this.mass) / (this.mass + other.getMass())) - tempV2) ;
+      }
     }
   }
     //Accessors and Mutators

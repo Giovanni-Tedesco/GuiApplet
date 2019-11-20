@@ -8,7 +8,8 @@ public class SingleObject implements ActionListener, ChangeListener {
   JFrame frame = new JFrame("Single Object View");
   Timer timer = new Timer(1000/60, this);
   TwoObjectElastic thepanel = new TwoObjectElastic();
-  JButton startButton = new JButton("Start!");
+  JButton startButton = new JButton("Start");
+  JButton resetButton = new JButton("Reset");
   JLabel mass1Label = new JLabel("Mass 1");
   JLabel mass2Label = new JLabel("Mass 2");
   JLabel velocity1Label = new JLabel("Velocity 1");
@@ -24,6 +25,11 @@ public class SingleObject implements ActionListener, ChangeListener {
     }
     if(evt.getSource() == startButton){
        thepanel.running = true;
+    }
+    if(evt.getSource() == resetButton){
+      thepanel.running = false;
+      thepanel.ball.xPos = 0;
+      thepanel.ball2.xPos = thepanel.dimensions.getWidth() - 100;
     }
   }
 
@@ -51,6 +57,11 @@ public class SingleObject implements ActionListener, ChangeListener {
     startButton.setSize(new Dimension(100, 50));
     startButton.addActionListener(this);
     thepanel.add(startButton);
+
+    resetButton.setSize(new Dimension(100, 50));
+    resetButton.setLocation(100,0);
+    resetButton.addActionListener(this);
+    thepanel.add(resetButton);
 
     //Mass 1
     mass1Slider.setSize(new Dimension(300, 50));
