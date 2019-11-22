@@ -19,20 +19,27 @@ public class SingleObject implements ActionListener, ChangeListener {
   JSlider velocity1Slider = new JSlider(-10, 10, 0);
   JSlider velocity2Slider = new JSlider(-10, 10, 0);
 
+  /** Action Performed Method required by ActionListener
+    *@param evt ActionEvent - listens for an action to be performed
+    */
   public void actionPerformed(ActionEvent evt){
     if(evt.getSource() == timer){
       thepanel.repaint();
     }
     if(evt.getSource() == startButton){
-       thepanel.running = true;
+       thepanel.blnRunning = true;
     }
     if(evt.getSource() == resetButton){
-      thepanel.running = false;
-      thepanel.ball.xPos = 0;
-      thepanel.ball2.xPos = thepanel.dimensions.getWidth() - 100;
+      thepanel.blnRunning = false;
+      thepanel.ball.dblXPos = 0;
+      thepanel.ball2.dblXPos = thepanel.dimensions.getWidth() - 100;
     }
   }
 
+
+  /** State Changed Method - Needed to check for changes in slider movement
+    *@param evt ChangeEvent - Checks for changes to the sliders
+    */
   public void stateChanged(ChangeEvent evt){
     timer.stop();
     if(evt.getSource() == mass1Slider){
@@ -50,6 +57,9 @@ public class SingleObject implements ActionListener, ChangeListener {
     timer.start();
   }
 
+  //Constructor
+  /** Two Object View Constructor
+    */
   SingleObject(){
     thepanel.setPreferredSize(thepanel.dimensions);
     thepanel.setLayout(null);

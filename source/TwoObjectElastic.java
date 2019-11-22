@@ -3,38 +3,43 @@ import javax.swing.*;
 
 public class TwoObjectElastic extends JPanel {
 
-  int width = 800;
-  int height = 350;
-  Ball1d ball = new Ball1d(10, 2.4, width);
-  Ball1d ball2 = new Ball1d(0, 3.6, width/2, width);
-  Dimension dimensions = new Dimension(width, height);
-  boolean running = false;
+  int dblWidth = 800;
+  int dblHeight = 350;
+  Ball1d ball = new Ball1d(10, 2.4, dblWidth);
+  Ball1d ball2 = new Ball1d(0, 3.6, dblWidth/2, dblWidth);
+  Dimension dimensions = new Dimension(dblWidth, dblHeight);
+  boolean blnRunning = false;
 
+  /** Overrided painComponent from JPanel
+    *@param g Graphics object - used for painting
+    */
   public void paintComponent(Graphics g){
-    g.drawLine(0, 150, width, 150);
+    g.drawLine(0, 150, dblWidth, 150);
 
-    if(running){
+    if(blnRunning){
       g.setColor(Color.BLUE);
       ball.update(g);
       g.setColor(Color.RED);
       ball2.update(g);
       if(ball.collides(ball2)){
-        double v1 = ball.bounce(ball2);
-        double v2 = ball2.bounce(ball);
+        double dblV1 = ball.bounce(ball2);
+        double dblV2 = ball2.bounce(ball);
 
-        ball.setVelocity(v1);
-        ball2.setVelocity(v2);
+        ball.setVelocity(dblV1);
+        ball2.setVelocity(dblV2);
 
 
       }
     } else {
       g.setColor(Color.BLUE);
-      g.fillOval((int)ball.xPos, 50, 100, 100);
+      g.fillOval((int)ball.dblXPos, 50, 100, 100);
       g.setColor(Color.RED);
-      g.fillOval((int)ball2.xPos, 50, 100, 100);
+      g.fillOval((int)ball2.dblXPos, 50, 100, 100);
     }
   }
 
+  /**Constructor for the Two Object Animation Class
+    */
   TwoObjectElastic() {
     super();
   }
