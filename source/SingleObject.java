@@ -6,7 +6,7 @@ import javax.swing.event.*;
 public class SingleObject implements ActionListener, ChangeListener {
 
   JFrame frame = new JFrame("Single Object View");
-  Timer timer = new Timer(1000/60, this);
+  Timer timer = new Timer(1000/48, this);
   TwoObjectElastic thepanel = new TwoObjectElastic();
   JButton startButton = new JButton("Start");
   JButton resetButton = new JButton("Reset");

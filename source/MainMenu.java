@@ -12,6 +12,9 @@ public class MainMenu implements ActionListener{
   JButton singleObjectButton = new JButton("Single Oject Collisions");
   JButton twoObjectElastic = new JButton("Two Object Elastic Collisions");
 
+  /**Implements the actionPerformed function from the ActionListener Class
+    * @param evt ActionEvent to listen for event changes in the pane
+    */
   public void actionPerformed(ActionEvent evt){
     if(evt.getSource() == aboutButton){
       System.out.println("Pressed About Button");
@@ -30,6 +33,8 @@ public class MainMenu implements ActionListener{
 
   }
   //Constructor
+  /**Constructs Main Menu
+    */
   MainMenu() {
     thepanel.setLayout(null);
     thepanel.setPreferredSize(new Dimension(400, 170));
