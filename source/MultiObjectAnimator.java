@@ -3,21 +3,24 @@ import javax.swing.*;
 
 public class MultiObjectAnimator extends JLabel{
   //Properies
-  int dblWidth = 800;
-  int dblHeight = 400;
+  int dblWidth = 960;
+  int dblHeight = 540;
   Dimension dim = new Dimension(dblWidth, dblHeight);
-  Ball2d[] balls = new Ball2d[10];
+  Ball2d[] balls = new Ball2d[40];
 
   /** Initialize the array of Ball2d Objects
     * @param balls[] Array of Ball2d Objects
     */
   private void initBalls(Ball2d[] balls){
     for(int i = 0; i < balls.length; i++){
-      int intRandX = (int)(Math.random() * 800);
+      int intRandX = (int)(Math.random() * 960);
       // System.out.println(intRandX);
-      int intRandY = (int)(Math.random() * 400);
+      int intRandY = (int)(Math.random() * 540);
+
+      int intRandVelX = (int)((Math.random() * 5) + 1);
+      int intRandVelY = (int)((Math.random() * 5) + 1);
       // System.out.println(intRandY);
-      balls[i] = new Ball2d(intRandX, intRandY, 4, 4, 100);
+      balls[i] = new Ball2d(intRandX, intRandY, intRandVelX, intRandVelY, 100);
     }
   }
   /** Overrides the paintComponent of the JPanel class
@@ -34,6 +37,7 @@ public class MultiObjectAnimator extends JLabel{
         if(balls[i].intersects(balls[j]) == true){
           // System.out.println("LOL");
           balls[i].collides(balls[j]);
+          balls[j].collides(balls[i]);
           // balls[j].collides(balls[i]);
           // balls[j].collides(balls[i]);
         }

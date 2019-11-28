@@ -3,10 +3,10 @@ import javax.swing.*;
 
 public class TwoObjectElastic extends JPanel {
 
-  int dblWidth = 800;
-  int dblHeight = 350;
-  Ball1d ball = new Ball1d(10, 2.4, dblWidth);
-  Ball1d ball2 = new Ball1d(0, 3.6, dblWidth/2, dblWidth);
+  int dblWidth = 960;
+  int dblHeight = 540;
+  Ball1d ball = new Ball1d(0, 50, dblWidth);
+  Ball1d ball2 = new Ball1d(0, 50, dblWidth/2, dblWidth);
   Dimension dimensions = new Dimension(dblWidth, dblHeight);
   boolean blnRunning = false;
 

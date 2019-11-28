@@ -7,6 +7,7 @@ public class MultiObjectView implements ActionListener {
   JFrame theframe = new JFrame("Multi-Balls");
   MultiObjectAnimator thepanel = new MultiObjectAnimator();
   JButton startButton = new JButton("Start");
+  JButton backButton = new JButton("Back");
   Timer timer = new Timer(1000/48, this);
 
   /** Implements the actionPerformed function from the ActionListener class
@@ -16,24 +17,29 @@ public class MultiObjectView implements ActionListener {
     if(evt.getSource() == timer){
       thepanel.repaint();
     }
+    if(evt.getSource() == backButton){
+      theframe.dispose();
+      theframe.setVisible(false);
+      MainMenu.changeVisibility(true);
+    }
   }
 
   //Constructor
   /** Constructs the MultiObjectView
   */
   MultiObjectView() {
-    thepanel.setPreferredSize(new Dimension(800, 400));
+    thepanel.setPreferredSize(thepanel.dim);
     thepanel.setLayout(null);
 
-    startButton.setSize(new Dimension(100, 50));
-    startButton.setLocation(0, 0);
-    startButton.addActionListener(this);
-    thepanel.add(startButton);
+    backButton.setSize(100, 50);
+    backButton.setLocation(0, 0);
+    backButton.addActionListener(this);
+    thepanel.add(backButton);
 
     theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     theframe.setContentPane(thepanel);
     theframe.pack();
-    theframe.setVisible(true);
+    theframe.setVisible(false);
     timer.start();
 
   }

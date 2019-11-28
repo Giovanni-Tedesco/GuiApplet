@@ -5,12 +5,12 @@ import javax.swing.event.*;
 
 public class MainMenu implements ActionListener{
 
-  JFrame theframe = new JFrame("Momentum App");
+  static JFrame theframe = new JFrame("Momentum App");
   JPanel thepanel = new JPanel();
   JButton aboutButton = new JButton("About");
   JButton multiObjButton = new JButton("Multi-Object Collisions");
   JButton singleObjectButton = new JButton("Single Oject Collisions");
-  JButton twoObjectElastic = new JButton("Two Object Elastic Collisions");
+  JButton quizButton = new JButton("Quiz");
 
   /**Implements the actionPerformed function from the ActionListener Class
     * @param evt ActionEvent to listen for event changes in the pane
@@ -18,16 +18,21 @@ public class MainMenu implements ActionListener{
   public void actionPerformed(ActionEvent evt){
     if(evt.getSource() == aboutButton){
       System.out.println("Pressed About Button");
-      theframe.setConentPane(AnimateSingleObj);
     }
     if(evt.getSource() == multiObjButton){
       System.out.println("Pressed Multi Button");
+      MultiObjectView multiObj = new MultiObjectView();
+      multiObj.theframe.setVisible(true);
+      this.theframe.setVisible(false); 
     }
     if(evt.getSource() == singleObjectButton){
       System.out.println("Pressed Single-Object Button");
+      TwoObject singObj = new TwoObject();
+      singObj.frame.setVisible(true);
+      this.theframe.setVisible(false);
     }
-    if(evt.getSource() == twoObjectElastic){
-      System.out.println("Pressed Two-Object Button");
+    if(evt.getSource() == quizButton){
+      System.out.println("Quiz Button");
     }
 
 
@@ -37,7 +42,7 @@ public class MainMenu implements ActionListener{
     */
   MainMenu() {
     thepanel.setLayout(null);
-    thepanel.setPreferredSize(new Dimension(400, 170));
+    thepanel.setPreferredSize(new Dimension(960, 540));
 
     aboutButton.setSize(new Dimension(200, 70));
     aboutButton.setLocation(0, 0);
@@ -54,15 +59,19 @@ public class MainMenu implements ActionListener{
     singleObjectButton.addActionListener(this);
     thepanel.add(singleObjectButton);
 
-    twoObjectElastic.setSize(new Dimension(200, 70));
-    twoObjectElastic.setLocation(200, 100);
-    twoObjectElastic.addActionListener(this);
-    thepanel.add(twoObjectElastic);
+    quizButton.setSize(new Dimension(200, 70));
+    quizButton.setLocation(200, 100);
+    quizButton.addActionListener(this);
+    thepanel.add(quizButton);
 
     theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     theframe.setContentPane(thepanel);
     theframe.pack();
     theframe.setVisible(true);
+  }
+
+  public static void changeVisibility(boolean blnState) {
+    theframe.setVisible(blnState);
   }
 
   public static void main(String[] args){

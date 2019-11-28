@@ -39,10 +39,10 @@ public class Ball2d {
     this.dblYPos += this.dblVy;
 
     //Check if the ball has hit a wall
-    if(this.dblXPos >= 800 || this.dblXPos <= 0){
+    if(this.dblXPos >= 940 || this.dblXPos <= 0){
       this.dblVx = -this.dblVx;
     }
-    if(this.dblYPos >= 380 || this.dblYPos <= 0){
+    if(this.dblYPos >= 520 || this.dblYPos <= 0){
       this.dblVy = -this.dblVy;
     }
     //Set the quadrant of the ball as it moves
@@ -74,28 +74,32 @@ public class Ball2d {
    * @return new velocity of ball
   */
   public void collides(Ball2d other){
-    //Angle of Deflection
-    double dblXSide = Math.abs(this.dblXPos - other.dblXPos);
-    double dblYSide = Math.abs(this.dblYPos - other.dblYPos);
-    double dblV1 = Math.sqrt((this.dblVx * this.dblVx) + (this.dblVy * this.dblVy));
-    double dblV2 = Math.sqrt((other.dblVx * other.dblVx) + (other.dblVy * other.dblVy));
-    double dblVAngle = Math.atan(dblYSide/dblXSide);
-
-    double dblTheta1 = Math.atan((other.dblMass * Math.sin(dblVAngle)) /
-                                   (this.dblMass + other.dblMass * Math.cos(dblVAngle)));
-    double dblTheta2 = (Math.PI - dblVAngle) / 2;
+    this.dblVx = -this.dblVx;
+    this.dblVy = -this.dblVy;
 
 
-    this.dblVx = ( ((dblV1 * Math.cos(dblTheta1 - dblVAngle) * (this.dblMass - other.dblMass)) +
-                 (2 * other.dblMass * dblV2 * Math.cos(dblTheta2 - dblVAngle))) /
-                 this.dblMass + other.dblMass) * (Math.cos(dblVAngle) + dblV1 * Math.sin(dblTheta1 - dblVAngle)
-                 * Math.cos(dblVAngle - Math.PI / 2));
+    //This is the technically correct math, but the program doesn't like lmao
+    // double dblXSide = Math.abs(this.dblXPos - other.dblXPos);
+    // double dblYSide = Math.abs(this.dblYPos - other.dblYPos);
+    // double dblV1 = Math.sqrt((this.dblVx * this.dblVx) + (this.dblVy * this.dblVy));
+    // double dblV2 = Math.sqrt((other.dblVx * other.dblVx) + (other.dblVy * other.dblVy));
+    // double dblVAngle = Math.atan(dblYSide/dblXSide);
+
+    // double dblTheta1 = Math.atan((other.dblMass * Math.sin(dblVAngle)) /
+    //                                (this.dblMass + other.dblMass * Math.cos(dblVAngle)));
+    // double dblTheta2 = (Math.PI - dblVAngle) / 2;
 
 
-    this.dblVy = ( ((dblV1 * Math.cos(dblTheta1 - dblVAngle) * (this.dblMass - other.dblMass)) +
-                 (2 * other.dblMass * dblV2 * Math.cos(dblTheta2 - dblVAngle))) /
-                 this.dblMass + other.dblMass) * (Math.cos(dblVAngle) + dblV1 * Math.sin(dblTheta1 - dblVAngle)
-                 * Math.cos(dblVAngle - Math.PI / 2));
+    // this.dblVx = ( ((dblV1 * Math.cos(dblTheta1 - dblVAngle) * (this.dblMass - other.dblMass)) +
+    //              (2 * other.dblMass * dblV2 * Math.cos(dblTheta2 - dblVAngle))) /
+    //              this.dblMass + other.dblMass) * (Math.cos(dblVAngle) + dblV1 * Math.sin(dblTheta1 - dblVAngle)
+    //              * Math.cos(dblVAngle - Math.PI / 2));
+
+
+    // this.dblVy = ( ((dblV1 * Math.cos(dblTheta1 - dblVAngle) * (this.dblMass - other.dblMass)) +
+    //              (2 * other.dblMass * dblV2 * Math.cos(dblTheta2 - dblVAngle))) /
+    //              this.dblMass + other.dblMass) * (Math.cos(dblVAngle) + dblV1 * Math.sin(dblTheta1 - dblVAngle)
+    //              * Math.cos(dblVAngle - Math.PI / 2));
     }
 
   /** Accessor for x velocity

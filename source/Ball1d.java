@@ -10,11 +10,11 @@ public class Ball1d {
 
   //Constructors
   /** Creates a one dimensionsal ball with a preset x_position
-    *@param intVelocity initial velocity of the ball
+    *@param dblVelocity initial velocity of the ball
     *@param dblMass initial mass of the ball
     *@param intWidth width of the ball
     */
-  Ball1d(double intVelocity, double dblMass, int intWidth){
+  Ball1d(double dblVelocity, double dblMass, int intWidth){
     this.dblVelocity = dblVelocity;
     this.dblMass = dblMass;
     this.intBounds = intWidth;
